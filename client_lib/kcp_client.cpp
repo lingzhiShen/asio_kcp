@@ -327,8 +327,8 @@ void kcp_client::do_recv_udp_packet_in_loop(void)
         if (err == EAGAIN)
             return;
         std::ostringstream ostrm;
-        std::string err_detail = ostrm.str();
         ostrm << "do_asio_kcp_connect recv error return with errno: " << err << " " << strerror(err);
+		std::string err_detail = ostrm.str();
         std::cerr << err_detail << std::endl;
         (*pevent_func_)(p_kcp_->conv, eDisconnect, err_detail, event_callback_var_);
         return;
